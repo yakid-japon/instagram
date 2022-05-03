@@ -1,0 +1,37 @@
+<div class="index-all">
+    <div class="container page">
+        <div class="row first-line-profile">
+            <h3>CONFIRMATION DE PUBLICATION</h3>
+        </div>
+        <div class="panel second-line">
+            <div class="panel-body" style="padding: 0;margin: 0;">
+                <%= image_tag @post.photo.url, width: 200 %>
+            </div>
+            
+            <div class="panel-heading" style="border: 0;">
+                <table>
+                    <tr >
+                        <td>
+                            <blockquote class="text-justify" style="margin-top: 5px;">
+                                <%= @post.content %>
+                            </blockquote>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <%= form_with(model: @post, local: true) do |form| %>
+                        <%= form.hidden_field :content %>
+                        <%= form.hidden_field :photo_cache %>
+                        <%= form.submit "Valider", class: "btn btn-info"%>
+                        <%= form.submit "Annuler", name:"Back", class: "btn btn-default"%>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-justify" style="margin: 0px 0 50px 0;"></div>
+    </div>
+
+    <%= render "partials/footer" %>
+
+</div>

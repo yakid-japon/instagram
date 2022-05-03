@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html' http-equiv='Content-Type' />
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1><%= @greeting %>, <%= @user.name.upcase %></h1>
+    <p>
+        Vous avez partagé avec succès une photo de vous,
+        avec l'adresse email : <%= @user.email %>.<br>
+    </p>
+    <p>
+        Pour voir ce que vous avez publié, cliquez : <%= link_to "ICI", "/users/#{@user.id}" %>.
+    </p>
+    <br><br>
+    <p>Merci et à très bientôt !!!</p>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<div class="index-all">
+    <div class="container page">
+        <div class="row first-line-profile">
+            <h3>MODIFICATION DE PUBLICATION</h3>
+        </div>
+        <div class="panel second-line">
+            
+            <div class="panel-heading" style="border: 0;">
+                <%= form_with(model: @post, local: true, class: "form-horizontal", url: choose_new_or_edit) do |form| %>
+                    <%= render "partials/errors-post" %>
+                    <div class="form-group">
+                        <%= form.label :Message, class: "col-sm-2 control-label"%>
+                        <div class="col-sm-10">
+                        <%= form.text_area :content, class:"form-control"%>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <%= form.label :Photo, class: "col-sm-2 control-label"%>
+                        <div class="col-sm-10">
+                        <%= form.file_field :photo, class: "form-control" %>
+                        <%= form.hidden_field :photo_cache %>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                        <%= form.submit "Enrégistrer", class: "btn btn-info"%>
+                        <%= form.submit "Annuler", name: "Back", class: "btn btn-default" %>
+                        </div>
+                    </div>
+                <% end %>  
+            </div>
+        </div>
+
+        <div class="row text-justify" style="margin: 0px 0 50px 0;"></div>
+    </div>
+
+    <%= render "partials/footer" %>
+
+</div>

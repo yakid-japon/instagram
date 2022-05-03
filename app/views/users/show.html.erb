@@ -1,0 +1,79 @@
+<%= render "partials/header" %>
+
+<div class="index-all">
+    <div class="container page">
+        <div class="row first-line-profile">
+            <div class="col-sm-4">
+                <div class="profil-pic-big">
+                    <% if current_user.photo.url %>
+                    <%= image_tag current_user.photo.url, width: "100%"%>
+                    <% else %>
+                    <%= image_tag "/images/user_insta.png", width: "100%" %>
+                    <% end %>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div>
+                    <div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <h2><%= current_user.username %></h2>
+                                </td>
+                                <td>
+                                    <%= link_to "Modifier profil", edit_user_path(current_user), class: "btn btn-default btn-sm"%>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <p><strong><%= get_current_user_post.count %></strong> <%= pluralize(get_current_user_post.count, 'Publication', 'Publications').split(' ')[1] %></p>
+                                </td>
+                                <td>
+                                    <p><strong><%= @favorites.count %></strong> favoris</p>
+                                </td>
+                                <td>
+                                    <p><strong>0</strong> abonnements</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <h4><strong><%= current_user.name %></strong></h4>
+                </div>
+            </div>
+        </div>
+        <%= render "partials/flash" %>
+        <% if get_current_user_post.size == 0 %>
+        <div class="alert alert-warning text-center">
+            <p>Aucune publication trouvée...</p>
+        </div>
+        <% end %>
+        <% get_current_user_post.each do |post| %>
+        <div class="row second-line-profile">
+            <div class="col-xs-12 panel">
+                <div class="panel-heading" style="display:flex;justify-content:space-between">
+                    <div>
+                        <strong style="color: rgb(163, 10, 10);font-size: 2rem;"><%= post.favorites.count %> <span class="glyphicon glyphicon-heart"></span></strong>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <%= link_to 'Show', post, class: "btn btn-default btn-sm" %>
+						<%= link_to 'Edit', edit_post_path(post), class: "btn btn-info btn-sm" %>
+						<%= link_to 'Delete', post, method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Vous êtes sûr de vouloir supprimer cette publication ?' } %>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding: 0;margin: 0;">
+                    <%= image_tag post.photo.url, width: "100%", alt: "" if post.photo %>
+                </div>
+            </div>
+        </div>
+        <% end %>
+
+        <div class="row text-justify" style="margin: 0px 0 50px 0;"></div>
+    </div>
+
+    <%= render "partials/footer" %>
+
+</div>
