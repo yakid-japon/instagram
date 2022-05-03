@@ -11,3 +11,4 @@ class User < ApplicationRecord
     mount_uploader :photo, PhotoUploader
     has_many :favorites, dependent: :destroy
 end
+

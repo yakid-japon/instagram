@@ -11,3 +11,4 @@ module PostsHelper
       @posts = Post.where(user_id: current_user.id).order(updated_at: :desc)
     end
 end
+
