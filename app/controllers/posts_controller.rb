@@ -25,6 +25,7 @@ class PostsController < ApplicationController
       end
     end
   end
+  
 
   def destroy
     @post.destroy
